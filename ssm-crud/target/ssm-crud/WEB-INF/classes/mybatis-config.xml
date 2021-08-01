@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <settings>
+      <!--是否开启驼峰命名自动映射，即从经典数据库列名 A_COLUMN 映射到经典 Java 属性名 aColumn。-->
+      <setting name="mapUnderscoreToCamelCase" value="true"/>
+  </settings>
+  <typeAliases>
+      <!--别名 MyBatis 会在包名下面搜索需要的 Java Bean-->
+      <!--每一个在包 com.study.bean 中的 Java Bean，在没有注解的情况下，会使用 Bean 的首字母小写的非限定类名来作为它的别名。
+      比如 com.study.bean.Employees 的别名为 employees；若有注解，则别名为其注解值。-->
+      <package name="com.study.bean"/>
+  </typeAliases>
+
+    <!--plugins标签要放在typeAliases标签后面-->
+  <plugins>
+      <plugin interceptor="com.github.pagehelper.PageInterceptor">
+          <!--分页参数合理化，如果pageNum > pages，就让他查询最后一页。如果pageNum < 0，就查询第一页-->
+          <property name="reasonable" value="true"/>
+      </plugin>
+  </plugins>
+</configuration>
